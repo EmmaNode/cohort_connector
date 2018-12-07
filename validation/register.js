@@ -21,7 +21,7 @@ module.exports = function validateRegisterInput(data) {
     errors.email = 'Email is required';
   }
 
-  if (Validator.isEmail(data.email)) {
+  if (!Validator.isEmail(data.email)) {
     errors.email = 'Email is invalid';
   }
 
@@ -29,7 +29,7 @@ module.exports = function validateRegisterInput(data) {
     errors.password = 'Password is required';
   }
 
-  if (Validator.isLength(data.password, { min: 6, max: 30 })) {
+  if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
     errors.password = 'Password must be at least 6 characters';
   }
 
@@ -37,7 +37,7 @@ module.exports = function validateRegisterInput(data) {
     errors.password2 = 'Confirm password is required';
   }
 
-  if (Validator.equals(data.password, data.password2)) {
+  if (!Validator.equals(data.password, data.password2)) {
     errors.password2 = 'Passwords must match';
   }
 
@@ -46,5 +46,3 @@ module.exports = function validateRegisterInput(data) {
     isValid: isEmpty(errors)
   };
 };
-
-// validator the responses/ test is going to go through the server and sent back to the client
